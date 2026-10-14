@@ -1,0 +1,553 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Building Community By Throwing a Zine Fest</title>
+<meta name="description" content="Building Community By Throwing a Zine Fest. Marya Errin Jones.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Karla:wght@400;500;700&family=Oswald:wght@500&display=swap">
+<style>
+/* Layout: one scene per screen, same as the Sojourner Truth piece. A row of staples along the bottom fills in as you read. Copy-paper ground, riso pink + riso blue inks. */
+:root{
+  --ground:#f4f3ef;
+  --ground-2:#e8e6df;
+  --ink:#1b1a1d;
+  --ink-dim:#55525a;
+  --pink:#c42c66;
+  --blue:#2c4fa3;
+  --tile:#fdfcf9;
+  --tile-2:#f3f1ec;
+  --tile-ink:#c42c66;
+  --line:rgba(27,26,29,.16);
+  --display:"Source Serif 4", Georgia, serif;
+  --body:"Karla", "Helvetica Neue", Arial, sans-serif;
+  --flap:"Oswald", "Arial Narrow", Arial, sans-serif;
+  --step--1:clamp(.85rem,.8rem + .2vw,1rem);
+  --step-0:clamp(1.05rem,.95rem + .45vw,1.35rem);
+  --step-1:clamp(1.3rem,1.1rem + .8vw,1.8rem);
+  --step-2:clamp(1.7rem,1.3rem + 1.6vw,2.7rem);
+  --step-3:clamp(2.3rem,1.6rem + 3vw,4.4rem);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{background:var(--ground);color:var(--ink);font-family:var(--body);font-size:var(--step-0);line-height:1.55;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);font-weight:600;text-wrap:balance;line-height:1.08;margin:0;letter-spacing:-.01em}
+p{margin:0}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:4px}
+a{color:var(--blue);text-decoration-thickness:1px;text-underline-offset:3px}
+
+.scene{min-height:calc(100svh - 64px);display:grid;align-content:start;padding-block:72px 96px;border-bottom:1px solid var(--line)}
+.wrap{max-width:1120px;margin-inline:auto;width:100%;min-width:0}
+.stack{display:grid;gap:28px}
+.eyebrow{font-family:var(--body);font-size:.85rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--pink)}
+.prose{display:grid;gap:1.3em;max-width:62ch}
+.prose p{font-size:clamp(1.12rem,1rem + .35vw,1.3rem);line-height:1.75}
+
+/* cover */
+.title{align-content:center;min-height:calc(100svh - 56px)}
+.landing{display:grid;justify-items:center;text-align:center;gap:clamp(14px,2.4vw,26px)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.byline{font-size:.95rem;font-weight:700;letter-spacing:.1em;color:var(--ink-dim)}
+.enter{margin-top:10px;padding:12px 22px;border:1px solid var(--blue);background:transparent;color:var(--blue);border-radius:999px;cursor:pointer;font-size:.8rem;font-weight:700;letter-spacing:.1em}
+.enter:hover{background:var(--blue);color:var(--ground)}
+
+/* split-flap board */
+.board{display:grid;grid-template-columns:repeat(var(--cols),var(--w));gap:var(--gap);perspective:800px;color:var(--tile-ink);font-family:var(--flap);font-weight:500;cursor:pointer;
+  --cols:10;--w:min(6vw,62px);--gap:min(.8vw,8px);--fs:calc(var(--w) * .9)}
+@media (max-width:640px){.board{--w:8vw;--gap:.7vw}}
+.ftile{position:relative;width:var(--w);height:calc(var(--w) * 1.42);font-size:var(--fs);line-height:calc(var(--w) * 1.42);text-align:center;border-radius:calc(var(--w) * .07);box-shadow:0 0 0 1px var(--line),0 calc(var(--w) * .05) calc(var(--w) * .14) rgba(27,26,29,.12)}
+.half{position:absolute;left:0;right:0;height:50%;overflow:hidden;background:var(--tile);backface-visibility:hidden}
+.half span{display:block;height:200%}
+.half.top{top:0;border-radius:calc(var(--w) * .07) calc(var(--w) * .07) 0 0;background:linear-gradient(to bottom,var(--tile-2),var(--tile));transform-origin:50% 100%}
+.half.bottom{bottom:0;border-radius:0 0 calc(var(--w) * .07) calc(var(--w) * .07);transform-origin:50% 0%}
+.half.bottom span{transform:translateY(-50%)}
+.ftile::after{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:rgba(27,26,29,.18);z-index:5;transform:translateY(-.5px)}
+.flap-top{z-index:3}.flap-bottom{z-index:3;transform:rotateX(90deg)}
+
+/* subtitle that sharpens out of blocks */
+.grow{position:relative;font-family:var(--display);font-style:italic;font-size:clamp(20px,3vw,36px);line-height:1.4;min-height:1.4em}
+.grow .text{visibility:hidden}
+.grow.still .text,.grow.done .text{visibility:visible}
+.grow canvas{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);pointer-events:none}
+@media (max-width:640px){.grow{font-size:18px}}
+
+.lede{max-width:62ch;color:var(--ink-dim)}
+blockquote{margin:0;font-family:var(--display);font-style:italic;line-height:1.25}
+blockquote cite{display:block;margin-top:10px;font-family:var(--body);font-style:normal;font-size:.8rem;font-weight:700;letter-spacing:.1em;color:var(--ink-dim)}
+.big-quote{font-family:var(--display);font-style:italic;line-height:1.2;font-size:var(--step-2);color:var(--ink);text-wrap:balance}
+
+/* timeline */
+.tl-legend{display:flex;gap:18px;flex-wrap:wrap;font-size:var(--step--1);color:var(--ink-dim)}
+.tl-legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:middle}
+.tl-scroll{overflow-x:auto;padding-block:8px 6px}
+.tl{position:relative;display:grid;grid-auto-flow:column;grid-auto-columns:minmax(96px,1fr);min-width:1180px;padding-top:30px}
+.tl::before{content:"";position:absolute;left:0;right:0;top:48px;height:2px;background:var(--line)}
+.ev{display:grid;justify-items:center;align-content:start;gap:10px;background:none;border:0;cursor:pointer;padding:0 4px;text-align:center}
+.ev .dot{width:16px;height:16px;border-radius:50%;margin-top:11px;border:2px solid var(--ground);box-shadow:0 0 0 2px currentColor;background:currentColor;transition:transform .2s}
+.ev.zine{color:var(--pink)}
+.ev.tool{color:var(--blue)}
+.ev .yr{font-size:var(--step--1);font-weight:700;font-variant-numeric:tabular-nums;color:var(--ink)}
+.ev .lbl{font-size:.82rem;color:var(--ink-dim);line-height:1.3}
+.ev[aria-pressed="true"] .dot{transform:scale(1.5)}
+.ev[aria-pressed="true"] .lbl{color:var(--ink)}
+.tl-detail{border-left:3px solid var(--pink);padding:6px 0 6px 20px;max-width:66ch;min-height:150px;display:grid;gap:8px;align-content:start}
+.tl-detail.tool{border-color:var(--blue)}
+.tl-detail.has-img{max-width:1000px;grid-template-columns:minmax(0,1fr) minmax(0,440px);gap:clamp(16px,3vw,40px)}
+@media (max-width:760px){.tl-detail.has-img{grid-template-columns:minmax(0,1fr)}}
+.tl-text{display:grid;gap:8px;align-content:start;min-width:0}
+.tl-fig{margin:0;display:grid;gap:8px}
+.tl-fig img{width:100%;display:block;border-radius:6px;background:#fff;box-shadow:0 10px 26px rgba(27,26,29,.14)}
+.tl-fig figcaption{font-size:.8rem;color:var(--ink-dim);display:grid;gap:2px}
+.tl-fig .credit{font-size:.72rem;letter-spacing:.02em}
+.tl-detail h3{font-size:var(--step-2)}
+.tl-detail p{color:var(--ink-dim)}
+
+/* copy counts */
+.copies{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;max-width:900px}
+@media (max-width:720px){.copies{grid-template-columns:minmax(0,1fr)}}
+.copy-stat{border-top:2px solid var(--pink);padding-top:12px;display:grid;gap:6px;align-content:start}
+.copy-stat .num{font-family:var(--display);font-weight:600;font-size:var(--step-2);font-variant-numeric:tabular-nums}
+.copy-stat .what{font-size:var(--step--1);color:var(--ink-dim)}
+
+/* fanzine genres */
+.genres{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px;max-width:900px}
+.genres li{padding:8px 14px;border:1px solid var(--line);border-radius:999px;background:var(--tile);font-size:var(--step--1)}
+
+.news{display:grid;gap:10px;max-width:640px;padding:clamp(18px,3vw,28px);border:1px solid var(--line);border-radius:10px;background:var(--tile);color:var(--ink);text-decoration:none}
+.news:hover{border-color:var(--blue)}
+.news-src{font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-dim)}
+.news-head{font-family:var(--display);font-weight:600;font-size:var(--step-1);line-height:1.2;text-wrap:balance}
+.news-go{font-size:var(--step--1);font-weight:700;color:var(--blue)}
+
+.sources{columns:2 340px;column-gap:40px;font-size:.95rem;color:var(--ink-dim);max-width:1000px}
+.sources p{break-inside:avoid;margin-bottom:14px;padding-left:1.4em;text-indent:-1.4em}
+.sources cite{font-style:italic}
+
+.fig-row{display:grid;grid-template-columns:minmax(0,360px) minmax(0,1fr);gap:clamp(20px,3.5vw,48px);align-items:start}
+@media (max-width:760px){.fig-row{grid-template-columns:minmax(0,1fr)}.fig-row .poster{max-width:420px}}
+.poster{margin:0;display:grid;gap:8px}
+.poster img{width:100%;display:block;border-radius:4px;background:#fff;box-shadow:0 12px 30px rgba(27,26,29,.16)}
+.poster figcaption{font-size:.8rem;color:var(--ink-dim);display:grid;gap:2px}
+.poster .credit{font-size:.72rem}
+
+/* photo tiles */
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;perspective:1000px}
+@media (max-width:480px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}}
+.tile{position:relative;padding:0;border:0;border-radius:8px;overflow:hidden;cursor:zoom-in;background:var(--tile);aspect-ratio:1/1.42;max-width:100%;
+  box-shadow:0 0 0 1px var(--line),0 6px 16px rgba(27,26,29,.12);transform-origin:50% 50%}
+.tile img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}
+.tile:hover img{transform:scale(1.05)}
+/* the split across the middle, like a flap */
+.tile::after{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:rgba(255,255,255,.55);box-shadow:0 1px 0 rgba(27,26,29,.18);z-index:2;pointer-events:none}
+.tile::before{content:"";position:absolute;inset:0 0 50% 0;background:linear-gradient(to bottom,rgba(255,255,255,.10),transparent);z-index:1;pointer-events:none}
+.tile.contain{background:#fff}
+.tile.contain img{object-fit:contain;padding:6px}
+.lightbox{position:fixed;inset:0;z-index:50;background:rgba(244,243,239,.97);display:grid;place-items:center;
+  padding:calc(56px + env(safe-area-inset-top,0px)) max(64px,calc(env(safe-area-inset-right,0px) + 56px)) calc(56px + env(safe-area-inset-bottom,0px)) max(64px,calc(env(safe-area-inset-left,0px) + 56px))}
+@media (max-width:640px){.lightbox{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-bottom:calc(80px + env(safe-area-inset-bottom,0px))}}
+.lb-fig{margin:0;display:grid;gap:10px;justify-items:center;max-height:100%;min-width:0}
+.lb-fig img,.lb-fig video{max-width:100%;max-height:calc(100svh - 170px);object-fit:contain;border-radius:4px;box-shadow:0 14px 40px rgba(27,26,29,.2);background:var(--ink)}
+.lb-fig img{background:none}
+.tile-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:3;width:46px;height:46px;border-radius:50%;background:rgba(244,243,239,.9);color:var(--pink);display:grid;place-items:center;font-size:1rem;padding-left:3px;box-shadow:0 4px 12px rgba(27,26,29,.25)}
+.lb-fig figcaption{font-size:.9rem;color:var(--ink-dim);text-align:center;max-width:60ch}
+.lb-btn{position:absolute;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--tile);cursor:pointer;font-size:1.1rem;display:grid;place-items:center}
+.lb-btn:hover{border-color:var(--blue);color:var(--blue)}
+.lb-close{top:calc(12px + env(safe-area-inset-top,0px));right:calc(12px + env(safe-area-inset-right,0px));font-size:1.5rem}
+.lb-prev{left:calc(12px + env(safe-area-inset-left,0px));top:50%;transform:translateY(-50%)}
+.lb-next{right:calc(12px + env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%)}
+@media (max-width:640px){.lb-prev,.lb-next{top:auto;transform:none;bottom:calc(16px + env(safe-area-inset-bottom,0px))}.lb-prev{left:calc(50% - 56px)}.lb-next{right:calc(50% - 56px)}}
+.lb-count{position:absolute;top:calc(22px + env(safe-area-inset-top,0px));left:calc(20px + env(safe-area-inset-left,0px));font-size:.8rem;font-weight:700;letter-spacing:.1em;color:var(--ink-dim);font-variant-numeric:tabular-nums}
+
+.xv{color:var(--pink);font-style:italic}
+.land{display:grid;gap:12px;max-width:62ch;padding:clamp(18px,3vw,30px);border:1px solid var(--line);border-left:3px solid var(--blue);border-radius:4px 10px 10px 4px;background:var(--tile)}
+.land .eyebrow{color:var(--blue)}
+.land p{font-size:clamp(1.05rem,1rem + .25vw,1.2rem);line-height:1.65}
+
+.coming{font-family:var(--display);font-style:italic;font-size:var(--step-1);color:var(--ink-dim);border:1px dashed var(--line);border-radius:10px;padding:24px;max-width:46ch}
+
+/* staple progress bar */
+.staple-bar{position:fixed;left:0;right:0;bottom:0;z-index:10;background:color-mix(in srgb,var(--ground) 94%,transparent);backdrop-filter:blur(6px);border-top:1px solid var(--line);
+  padding-top:10px;padding-bottom:calc(10px + env(safe-area-inset-bottom,0px));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;align-items:center;gap:14px}
+.staple-bar nav{display:flex;gap:2px;flex:1;min-width:0;overflow-x:auto}
+.st{width:28px;height:26px;flex:none;border:0;background:none;cursor:pointer;padding:0;display:grid;place-items:center}
+.st svg{width:22px;height:18px}
+.st path{stroke:var(--line);transition:stroke .3s}
+.st.done path{stroke:var(--pink)}
+.st.here path{stroke:var(--blue)}
+.where{font-size:.78rem;color:var(--ink-dim);white-space:nowrap}
+.arrows{display:flex;gap:6px}
+.arrows button{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--ground-2);cursor:pointer}
+@media (max-width:560px){.where{display:none}}
+</style>
+</head>
+<body>
+
+<main>
+<section class="scene title" id="title" data-label="Title">
+  <div class="wrap landing">
+    <p class="eyebrow">Zines // Community</p>
+    <h1 class="sr">Building Community By Throwing a Zine Fest</h1>
+    <div class="board" id="word" aria-hidden="true" title="Flip through again"></div>
+    <p class="grow" id="tag" aria-label="By Throwing a Zine Fest"></p>
+    <p class="byline">MARYA ERRIN JONES</p>
+    <button class="enter" id="enter">BEGIN <span aria-hidden="true">→</span></button>
+  </div>
+</section>
+
+<section class="scene" id="history" data-label="A Short History of Zines">
+  <div class="wrap stack">
+    <p class="eyebrow">Before zines, pamphlets</p>
+    <h2 style="font-size:var(--step-3)">A Short History of Zines</h2>
+    <div class="prose">
+      <p>A brief history of zines starts with the pamphlet. A pamphlet is a booklet with no hard cover and no binding. It can be a single sheet printed on both sides and folded in half, in thirds or in fourths, which is called a leaflet. Or it can be a few pages folded in half and stapled through the crease to make a simple book. Pamphlets were political, and in some countries they were considered slanderous.</p>
+      <p>The name comes from a twelfth-century comic love poem in Latin, <em>Pamphilus</em>, a short work that traveled on its own, without covers. By around 1387 the word had come into Middle English as <em>pamphilet</em> or <em>panflet</em>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="timeline" data-label="Timeline">
+  <div class="wrap stack">
+    <p class="eyebrow">1100s → 1990s</p>
+    <h2 style="font-size:var(--step-2)">Pamphlets, presses and copiers</h2>
+    <div class="tl-legend"><span><i style="background:var(--pink)"></i>Pamphlets and the people who made them</span><span><i style="background:var(--blue)"></i>Tools for making copies</span></div>
+    <div class="tl-scroll"><div class="tl" id="tl" role="group" aria-label="Timeline"></div></div>
+    <div class="tl-detail" id="tlDetail" aria-live="polite"></div>
+  </div>
+</section>
+
+<section class="scene" id="whiterose" data-label="The White Rose">
+  <div class="wrap stack">
+    <p class="eyebrow">Munich · June 1942 – February 1943</p>
+    <h2 style="font-size:var(--step-3)">The White Rose</h2>
+    <div class="prose">
+      <p>Between June 1942 and February 1943, a circle of students in Munich wrote and distributed leaflets against Hitler and the war. The core of the White Rose was five students in their early twenties: Sophie Scholl, her brother Hans Scholl, Alexander Schmorell, Willi Graf and Christoph Probst. Kurt Huber, a professor of philosophy, was also a member.</p>
+      <p>Alexander Schmorell and Hans Scholl wrote the first four leaflets. They typed them on a borrowed typewriter, as many copies as they could make, probably no more than a hundred, and distributed them throughout Germany.</p>
+    </div>
+    <div class="copies" aria-label="How many copies they made">
+      <div class="copy-stat"><span class="num">~100</span><span class="what">copies of each of the first four leaflets, typed one at a time</span></div>
+      <div class="copy-stat"><span class="num">6,000–9,000</span><span class="what">copies of the fifth leaflet, run on a hand-cranked duplicating machine</span></div>
+      <div class="copy-stat"><span class="num">~15,000</span><span class="what">copies across all six leaflets</span></div>
+    </div>
+    <div class="prose">
+      <p>On February 18, 1943, Hans and Sophie were seen leaving leaflets at the University of Munich and were arrested. Christoph Probst was arrested soon after. On February 22 the three were brought before the People’s Court, sitting in Munich with its head judge, Roland Freisler, presiding. The trial lasted only a few hours. They were convicted of treason and sentenced to death, and only hours later they were executed by guillotine. All three faced their deaths bravely. Hans cried out his last words, “Long live freedom!”</p>
+      <p>Later that same year, other members of the White Rose were tried and executed: Alexander Schmorell (age 25), Willi Graf (age 25) and Kurt Huber (age 49). Most of the other students convicted for their part in the group’s activities received prison sentences.</p>
+      <p>Before they died, several members believed their execution would stir university students and other anti-war citizens to rally against Hitler and the war. Accounts suggest it did not. Students went on with their studies, other citizens said nothing, and many regarded the group as anti-national. Their actions were mostly dismissed until after the war, when Germany came to honor them.</p>
+      <p>Before we begin to think that the days of consequence the White Rose Resistance faced are over…</p>
+    </div>
+    <a class="news" href="https://theintercept.com/2026/06/23/prairieland-texas-ice-protest-prison-sentences/" target="_blank" rel="noopener">
+      <span class="news-src">The Intercept · Matt Sledge · June 23, 2026</span>
+      <span class="news-head">Prairieland Defendant Sentenced to 30 Years in Prison for Moving a Box of Antifascist Zines</span>
+      <span class="news-go">Read the article <span aria-hidden="true">→</span></span>
+    </a>
+    <div class="prose">
+      <p>In June 2026, a federal judge in Fort Worth, Texas, sentenced Daniel Sanchez Estrada to 30 years in prison. He was not accused of attending the July 4, 2025, protest outside the Prairieland Detention Center, an ICE facility where an officer was shot and wounded. He was convicted of concealing evidence for moving a box of antifascist zines afterward. His defense said the zines were his own and protected speech. Prosecutors argued that moving the box helped the man accused of the shooting, who was a fugitive at the time.</p>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="fanzines" data-label="Fanzines">
+  <div class="wrap stack">
+    <p class="eyebrow">Modern zine making</p>
+    <h2 style="font-size:var(--step-3)">Fanzines</h2>
+    <p class="lede">Fans started making their own magazines about the things they loved.</p>
+    <ul class="genres" aria-label="Fanzine genres">
+      <li>Science fiction</li><li>Media</li><li>Comics</li><li>Horror film</li><li>Rock &amp; roll</li><li>Punk</li><li>Mod</li><li>Local music</li><li>Role-playing games</li><li>Video games</li><li>Wargaming</li><li>Sport</li>
+    </ul>
+  </div>
+</section>
+
+<section class="scene" id="abqzf" data-label="ABQ Zine Fest">
+  <div class="wrap stack">
+    <p class="eyebrow">Albuquerque, New Mexico · Year fifteen</p>
+    <h2 style="font-size:var(--step-3)">ABQ Zine Fest <span class="xv">XV</span></h2>
+    <div class="fig-row">
+    <figure class="poster">
+      <img src="img/abqzf-xv-poster.jpg" alt="ABQZF XV poster in ink and blue watercolor: three punk musicians, a singer with spiked hair in a Bad Brains shirt, a drummer whose bass drum reads 410 Central Ave NW, Gizmo Arts, Albuquerque, NM 87102, and a guitarist in round glasses and plaid pants.">
+      <figcaption>ABQ Zine Fest XV poster. Gizmo Arts, 410 Central Ave NW, Albuquerque.<span class="credit">Art: [artist]</span></figcaption>
+    </figure>
+    <div class="prose">
+      <p>ABQZF, now in its fifteenth year, is the oldest organized zine event in New Mexico. ABQZF is community-accountable and fosters a non-competitive, diverse, queer-friendly, creative environment for zinesters in the City of Albuquerque and beyond. ABQZF is a <a href="https://www.abqzf.com/vols" target="_blank" rel="noopener">Black woman-founded</a>, co-conspirator-supported, people-powered, queer-minded literary festival.</p>
+    </div>
+    </div>
+    <aside class="land" aria-label="Land acknowledgment">
+      <p class="eyebrow">Land acknowledgment</p>
+      <p>ABQ Zine Fest XV is happening on unceded, Indigenous lands in the so-called state of New Mexico, the home of Tewa-speaking people of 23 Pueblo tribes, the Diné, and three Apache tribes.</p>
+      <p>Not sure whose land you occupy? <a href="https://native-land.ca/" target="_blank" rel="noopener">Click here to find out.</a></p>
+    </aside>
+  </div>
+</section>
+
+<section class="scene" id="gallery" data-label="ABQZF XV photos">
+  <div class="wrap stack">
+    <p class="eyebrow">ABQ Zine Fest XV · Gizmo Arts</p>
+    <h2 style="font-size:var(--step-2)">This year at the fest</h2>
+    <div class="tiles" id="tiles"></div>
+  </div>
+</section>
+
+<section class="scene" id="about" data-label="About the author">
+  <div class="wrap stack">
+    <p class="eyebrow">About the author</p>
+    <h2 style="font-size:var(--step-3)">Marya Errin Jones</h2>
+    <div class="fig-row">
+    <figure class="poster">
+      <img src="img/proj-03.jpg" alt="Marya Errin Jones smiling in a selfie in glasses and a dark jacket, on a grassy field at the Balloon Fiesta with hot-air balloons rising into a clear blue sky behind her.">
+    </figure>
+    <div class="prose">
+      <p>Marya Errin Jones is an interdisciplinary artist and playwright working with lo-fi puppetry, loop pedals, and mixed media. Her work has been presented at HERE Arts Center, and Brown University. She founded ABQ Zine Fest, now in its 15th year. Marya is also a founder and curator of the now sunsetted music/artspace, The Tannex. Marya has received grants from the Jim Henson Foundation and the Andy Warhol Foundation. Her zines are archived at MIT, Tate Modern, and Barnard College.</p>
+      <p>Currently, Marya is a PhD student in American Studies at the University of New Mexico, where she explores Black Feminist Technoscience, Afro-futurism, temporality, and experimental performance. Her writing appears in <cite>Hyperallergic</cite>, <cite>Southwest Contemporary</cite>, and <cite>Critical Stages/Scènes critiques</cite>. Marya is a 2024 finalist of New York Theatre Workshop’s 2050 Artistic Fellowship.</p>
+    </div>
+    </div>
+    <h3 style="font-size:var(--step-2)">Other projects</h3>
+    <div class="tiles" id="projTiles"></div>
+  </div>
+</section>
+
+<section class="scene" id="sources" data-label="Sources">
+  <div class="wrap stack">
+    <p class="eyebrow">Sources</p>
+    <div class="sources">
+      <p><cite>Democracy Now!</cite> “<a href="https://www.democracynow.org/2026/6/25/prairieland_nine" target="_blank" rel="noopener">Prairieland Nine</a>.” June 25, 2026.</p>
+      <p>Sledge, Matt. “<a href="https://theintercept.com/2026/06/23/prairieland-texas-ice-protest-prison-sentences/" target="_blank" rel="noopener">Prairieland Defendant Sentenced to 30 Years in Prison for Moving a Box of Antifascist Zines</a>.” <cite>The Intercept</cite>, June 23, 2026.</p>
+      <p>“<a href="https://www.comicsbeat.com/zines-used-as-evidence-to-convict-in-prairieland-case/" target="_blank" rel="noopener">Zines Used as Evidence to Convict in Prairieland Case</a>.” <cite>The Beat</cite>.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
+  <figure class="lb-fig"><img id="lbImg" alt=""><video id="lbVid" controls playsinline preload="metadata" hidden></video><figcaption id="lbCap"></figcaption></figure>
+  <button class="lb-btn lb-close" id="lbClose" aria-label="Close">×</button>
+  <button class="lb-btn lb-prev" id="lbPrev" aria-label="Previous photo">←</button>
+  <button class="lb-btn lb-next" id="lbNext" aria-label="Next photo">→</button>
+  <span class="lb-count" id="lbCount"></span>
+</div>
+
+<div class="staple-bar">
+  <nav id="staples" aria-label="Sections"></nav>
+  <span class="where" id="where"></span>
+  <div class="arrows"><button id="prev" aria-label="Previous section">←</button><button id="next" aria-label="Next section">→</button></div>
+</div>
+
+<script>
+(function(){
+  const scenes=[...document.querySelectorAll('.scene')];
+  let current=0;
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* staple progress */
+  const nav=document.getElementById('staples'), where=document.getElementById('where');
+  const stapleSvg='<svg viewBox="0 0 22 18" aria-hidden="true"><path d="M3 15 V5 H19 V15" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  scenes.forEach((s,i)=>{const b=document.createElement('button');b.className='st';b.innerHTML=stapleSvg;b.setAttribute('aria-label',s.dataset.label);b.title=s.dataset.label;b.onclick=()=>go(i);nav.appendChild(b);});
+  function paint(){[...nav.children].forEach((b,i)=>{b.classList.toggle('done',i<current);b.classList.toggle('here',i===current);});where.textContent=(current+1)+' / '+scenes.length+' · '+scenes[current].dataset.label;}
+  function go(i){current=Math.max(0,Math.min(scenes.length-1,i));scenes[current].scrollIntoView({behavior:reduce?'auto':'smooth'});paint();}
+  const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting&&e.intersectionRatio>.5){current=scenes.indexOf(e.target);paint();}});},{threshold:[.5,.75]});
+  scenes.forEach(s=>io.observe(s));paint();
+  document.getElementById('enter').onclick=()=>go(1);
+  document.getElementById('next').onclick=()=>go(current+1);
+  document.getElementById('prev').onclick=()=>go(current-1);
+  /* photo tiles + viewer */
+  const PHOTOS=[
+    {src:'img/gizmo-c-sketch.jpg',alt:'A marker sketch of the Gizmo Arts building on a lined index card: tall facade, rows of small square windows, three bands of windows in the center, and Gizmo Arts lettered over the storefront.',cap:'Drawn: Gizmo Arts on an index card.'},
+    {src:'img/gizmo-a-penney.jpg',alt:'Black-and-white photo of the same building as a J. C. Penney department store, with pennant flags strung down its facade, a large crowd gathered at the entrance, and vintage cars parked along the street.',cap:'Then: the building as a J. C. Penney store.'},
+    {src:'img/gizmo-b-rendering.jpg',alt:'The building today with a fresh cream facade and the red Gizmo Arts sign over the gated storefront, captioned Gizmo Arts, Platforms for Community + Artists.',cap:'Today: Gizmo Arts, Platforms for Community + Artists.'},
+    {src:'img/fest-01.jpg',alt:'Gizmo Arts on Central Avenue on a rainy day, seen from a car window, with a red Gizmo Arts sign over the storefront and cars parked along the curb.',cap:'Gizmo Arts, 410 Central Ave NW, on a rainy fest day.'},
+    {src:'img/fest-14-gizmo-sign.jpg',alt:'A tilted, sunny view of the Gizmo Arts storefront with its red letter sign and pink dinosaur, and a person in a gray jacket and hot-pink pants standing in front of the gated entrance.',cap:'Under the Gizmo Arts sign.'},
+    {src:'img/fest-02-print-disco.jpg',fit:'contain',alt:'Hand-drawn flyer in pink, yellow and teal: Risolana and ABQ Zine Fest host a Print Disco and Zine Reading on 9/18. A cartoon Riso printer in blue boots and a zine with a Zia symbol dance around a disco ball. Stop by Risolana during regular Friday print hours, 12 to 6 PM, to print your zines; ABQ Zine Fest will be there 4 to 6 PM to play music, help fold, and host a zine reading at 5.',cap:'Risolana and ABQ Zine Fest host a Print Disco and Zine Reading, 9/18.'},
+    {src:'img/fest-03-room.jpg',alt:'A packed hall at ABQ Zine Fest: rows of exhibitor tables covered in patterned cloths, zines, prints and shirts, with people browsing in every aisle and an ABQ Zine Fest slide on the screen at the far end.',cap:'Exhibitors and readers fill the hall.'},
+    {src:'img/fest-05.jpg',alt:'A workshop in a bare drywall room: a masked presenter stands beside a projected slide listing ways to stay in touch, including snail mail, walkie-talkies, ham radio and Signal, while five people listen from folding chairs around a table. A blue paper sign on the wall reads ABQZF XV workshop.',cap:'An ABQZF XV workshop on ways to stay in touch: snail mail, walkie-talkies, ham radio, Signal.'},
+    {src:'img/fest-06.jpg',alt:'A white wall spelled out in hot-pink foil balloon letters: Stop being so fucking forgiving, people know exactly what the fuck they’re doing. Two people lean together at the left edge looking at a phone.',cap:'The balloon wall.'},
+    {src:'img/fest-04.jpg',alt:'A selfie of three smiling, waving people in front of a wall of hot-pink foil balloon letters; one wears a black ABQZF XV shirt printed with the fest poster art.',cap:'At the balloon wall, in the ABQZF XV shirt.'},
+    {src:'img/fest-07.jpg',alt:'Two smiling people stand side by side against a white wall, one in a green ABQ Zine Fest shirt and plaid flannel, the other in a yellow ABQ Zine Fest shirt.',cap:'Wearing ABQ Zine Fest shirts.'},
+    {src:'img/fest-08.jpg',alt:'Two people working at a craft table: one leans over cut paper and an orange soda can, the other, in a red bandana, a mask and a name tag, holds red scissors over a pink printed sheet and a black-and-white zine.',cap:'Cutting and pasting at the making table.'},
+    {src:'img/fest-09-merch.jpg',alt:'The ABQ Zine Fest table: a black ABQZF XV T-shirt printed with the fest poster art hangs on a rack in the foreground, while a volunteer with bright blue curly hair sorts papers at a table covered in buttons, blue ABQ pennants and tote bags, and others work behind her.',cap:'The ABQZF table, with this year’s shirts, buttons and totes.'},
+    {src:'img/fest-10-doodle-booth.jpg',alt:'An exhibitor in a mask sits inside a purple cardboard booth shaped like a vending machine, labeled Live Drawing Doodle Booth, with a price list, an Insert Token slot, a Collect Here sign, and stickers and drawings pinned around the window.',cap:'A live drawing doodle booth, built like a vending machine.'},
+    {src:'img/fest-11-voter-registration.jpg',alt:'A volunteer in a yellow New Mexico cap, a black mask and League of Women Voters and Voter Registrar buttons sits behind a table with clipboards and forms. A hand-taped hot-pink and white sign on the front of the table reads Voter Registration.',cap:'Voter registration with the League of Women Voters.'},
+    {src:'img/fest-12-exhibitors.jpg',alt:'Two exhibitors laughing together behind a table draped in orange patterned cloth and covered in zines, including Rest as Reparations, First Aide to Face Adversity, How to Use Herbal Medicine and Artistic Apothecary, beside a hand-lettered yellow envelope labeled Sensory Surprise Sack, $11, and a jar of beans.',cap:'Exhibitors sharing a laugh over a table of zines.'},
+    {src:'img/fest-13-indigenous-food.jpg',alt:'A smiling exhibitor holds a paper fan covered in black hand lettering beside a black pegboard display hung with block prints and zines, including Death and Food, Heart Rate and an Indigenous food zine, under a string banner reading Indigenous Food.',cap:'Block prints and Indigenous food zines.'},
+    {src:'img/abqzf-xvi-sweet-sixteen.jpg',fit:'contain',alt:'Poster for abq zine fest (Sweet) Sixteen in puffy sky-blue and cream lettering, surrounded by pink lollipops and sparkles, dated 10/2/27, abqzf.com.',cap:'Save the date: ABQ Zine Fest (Sweet) Sixteen, 10/2/27. abqzf.com'}
+  ];
+  const PROJECTS=[
+    {src:'img/proj-04.jpg',alt:'The Wyrd Machine, a black vending machine stocked with small packaged art objects, with a PUSH flap at the bottom, standing against a brick wall beside a pinball machine.',cap:'The Wyrd Machine.'},
+    {src:'img/proj-06.jpg',alt:'A close, light-streaked view through the glass of the Wyrd Machine, its coil rows holding packaged items such as Healing from a Bad Breakup and a Tamagotchi, glowing in red, yellow and blue light.',cap:'Inside the Wyrd Machine.'},
+    {src:'img/proj-01.jpg',alt:'Two packages from Vortex, vortexvto.com, hanging in vending coils: a card of false teeth labeled Teeth, and a round pin-up mirror labeled Mirror.',cap:'Vortex teeth and mirror.'},
+    {src:'img/proj-08.jpg',alt:'Items in the Wyrd Machine’s coils: a lucky rabbit’s foot from Old School Magick, a small tin labeled Cactus, and a hot-pink package of tiny rubber hands.',cap:'Lucky rabbit’s foot and tiny hands.'},
+    {src:'img/proj-09.jpg',alt:'A zine cover in green and black: Where Is Sydney Goldsmith? by Marya Errin Jones, with a woman’s face cut into strips and stacked in a collage.',cap:'Where Is Sydney Goldsmith? by Marya Errin Jones.'},
+    {src:'img/proj-10.jpg',alt:'An open red vintage suitcase strung with fairy lights and pinned with buttons, filled with zines including Where Is Sydney Goldsmith? and Re-make/Re-module, above a table spread with more zines.',cap:'A suitcase of zines, including Where Is Sydney Goldsmith? and Re-make/Re-module.'},
+    {src:'img/proj-07-zine-library.jpg',fit:'contain',alt:'Round logo for the Albuquerque Zine Library: a curling scroll reading I heart zines!, Est. 2013, circled by the library’s name in red.',cap:'Albuquerque Zine Library, est. 2013.'},
+    {src:'img/proj-02.jpg',alt:'A dandelion gone to seed, its white puffball rising above a bed of green leaves and a spiky blue grass.',cap:'Dandelion.'},
+    {src:'img/proj-05.jpg',alt:'Tall green grass on a mountain slope, looking downhill between pines toward the valley under a blue sky with white clouds.',cap:'Meadow.'},
+    {src:'img/proj-video-poster.jpg',video:'video/proj-video.mp4',alt:'A short video of a wide river under a cloudy gray sky, with a tree line on the far bank and brush in the foreground.',cap:'River.'}
+  ];
+  const lb=document.getElementById('lightbox'),lbImg=document.getElementById('lbImg'),lbVid=document.getElementById('lbVid'),lbCap=document.getElementById('lbCap'),lbCount=document.getElementById('lbCount');
+  let lbList=PHOTOS,lbAt=-1,lbFrom=null;
+  function buildBoard(el,list){
+    list.forEach((p,i)=>{const b=document.createElement('button');b.className='tile';b.setAttribute('aria-label','Open '+(p.video?'video':'photo')+' '+(i+1)+': '+(p.cap||p.alt));const im=document.createElement('img');im.src=p.src;im.alt='';im.loading='lazy';if(p.fit==='contain')b.classList.add('contain');b.appendChild(im);if(p.video){const pl=document.createElement('span');pl.className='tile-play';pl.setAttribute('aria-hidden','true');pl.textContent='▶';b.appendChild(pl);}b.onclick=()=>openLb(list,i,b);el.appendChild(b);});
+    /* flip the tiles in, board-style, the first time the board comes into view */
+    if(reduce||!('IntersectionObserver' in window))return;
+    let flipped=false;
+    const gio=new IntersectionObserver(es=>{es.forEach(e=>{
+      if(!e.isIntersecting||flipped)return;flipped=true;gio.disconnect();
+      [...el.children].forEach((t,i)=>{
+        t.animate([{transform:'rotateX(-90deg)',filter:'brightness(.6)'},{transform:'rotateX(12deg)',filter:'brightness(1)',offset:.7},{transform:'rotateX(0deg)',filter:'brightness(1)'}],
+          {duration:520,delay:i*70,easing:'cubic-bezier(.2,.7,.2,1)',fill:'backwards'});
+      });
+    });},{threshold:.25});
+    gio.observe(el);
+  }
+  buildBoard(document.getElementById('tiles'),PHOTOS);
+  buildBoard(document.getElementById('projTiles'),PROJECTS);
+  function showLb(i){
+    lbAt=(i+lbList.length)%lbList.length;const p=lbList[lbAt];
+    lbVid.pause();
+    if(p.video){lbImg.hidden=true;lbVid.hidden=false;lbVid.poster=p.src;lbVid.src=p.video;lbVid.setAttribute('aria-label',p.alt);}
+    else{lbVid.hidden=true;lbVid.removeAttribute('src');lbVid.load();lbImg.hidden=false;lbImg.src=p.src;lbImg.alt=p.alt;}
+    lbCap.textContent=p.cap||'';lbCount.textContent=(lbAt+1)+' / '+lbList.length;
+    const multi=lbList.length>1;document.getElementById('lbPrev').hidden=!multi;document.getElementById('lbNext').hidden=!multi;
+  }
+  function openLb(list,i,from){lbList=list;lbFrom=from;showLb(i);lb.hidden=false;document.getElementById('lbClose').focus();}
+  function closeLb(){lbVid.pause();lb.hidden=true;lbAt=-1;if(lbFrom)lbFrom.focus();}
+  document.getElementById('lbClose').onclick=closeLb;
+  document.getElementById('lbPrev').onclick=()=>showLb(lbAt-1);
+  document.getElementById('lbNext').onclick=()=>showLb(lbAt+1);
+  lb.addEventListener('click',e=>{if(e.target===lb)closeLb();});
+
+  document.addEventListener('keydown',e=>{
+    if(e.target.closest('input,textarea'))return;
+    if(!lb.hidden){
+      if(e.key==='Escape'){e.preventDefault();closeLb();}
+      else if(['ArrowRight','ArrowDown'].includes(e.key)){e.preventDefault();showLb(lbAt+1);}
+      else if(['ArrowLeft','ArrowUp'].includes(e.key)){e.preventDefault();showLb(lbAt-1);}
+      return;
+    }
+    const k=e.key;
+    if(['ArrowRight','ArrowDown','PageDown'].includes(k)||(k===' '&&!e.target.closest('button'))){e.preventDefault();go(current+1);}
+    else if(['ArrowLeft','ArrowUp','PageUp'].includes(k)){e.preventDefault();go(current-1);}
+  });
+
+  /* timeline */
+  const events=[
+    {y:'1100s',k:'zine',l:'Pamphilus',t:'Pamphilus',d:'A twelfth-century comic love poem in Latin that traveled as a small work on its own, without covers. Small booklets took their name from it.'},
+    {y:'c. 1387',k:'zine',l:'“Pamphlet”',t:'The word comes into English',d:'In Middle English, a small work issued by itself without covers was called a pamphilet or panflet.'},
+    {y:'1476',k:'tool',l:'Caxton’s press',t:'William Caxton’s press',d:'Caxton set up a printing press at Westminster and became one of the first to print in English. He printed Aesop’s Fables, Ovid and Chaucer, and did much to standardize English spelling. The silent h in “ghost” is traced to him, by way of Flemish.'},
+    {y:'c. 1483',k:'tool',l:'Woodcuts',t:'The Canterbury Tales, illustrated',d:'Chaucer’s Canterbury Tales, a fourteenth-century storytelling contest and travelogue in Middle English, came out in a second Caxton edition illustrated with woodcuts.'},
+    {y:'1600–1715',k:'zine',l:'Stuart pamphlets',t:'2,200 pamphlets',d:'About 2,200 pamphlets were published in Great Britain during the Stuart period. James VI and I, himself the author of Daemonologie (1597), reigned through the Gunpowder Plot of 1605 and sponsored the Bible translation that carries his name.'},
+    {y:'1776',k:'zine',l:'Phillis Wheatley',t:'Phillis Wheatley and George Washington',d:'The poet Phillis Wheatley, formerly enslaved and a strong supporter of independence, sent General Washington a poem in his honor in October 1775. In 1776 he received her at his headquarters in Cambridge, Massachusetts, and the poem went to print that spring.'},
+    {y:'1787–88',k:'zine',l:'The Federalist',t:'The Federalist Papers',d:'Alexander Hamilton, James Madison and John Jay wrote 85 essays in the age of the American and French revolutions. In the spring of 1788, Jay distilled the case into a pamphlet, An Address to the People of the State of New-York. When the essays were gathered into a book, a newspaper notice offered it to subscribers for one dollar, with no money required till delivery.',img:'img/federalist-ad.jpg',alt:'Printed newspaper notice announcing The Federalist, a collection of essays written in favor of the new Constitution, by a Citizen of New-York, to be delivered to subscribers at the moderate price of one dollar, with Philo-Publius and the Articles of the Convention added at no extra cost.',cap:'A newspaper notice for The Federalist in book form, “by a Citizen of New-York.”',credit:'Public domain'},
+    {y:'1800s',k:'zine',l:'180,000 pamphlets',t:'180,000 pamphlets',d:'Twenty-one UK research libraries hold about 180,000 pamphlets from the nineteenth century, on politics, war and information.'},
+    {y:'1923',k:'tool',l:'Spirit duplicator',t:'The spirit duplicator',d:'Wilhelm Ritzerfeld invented the spirit duplicator in Germany. The Ditto machine and its purple copies came out of it.',img:'img/banda.jpg',alt:'A hand-cranked Banda Model Ten spirit duplicator with a metal drum and paper tray, beside its folded instruction book from Block & Anderson Limited.',cap:'A Banda Model Ten spirit duplicator and its instruction book.',credit:'Photo: [photographer]',lic:'CC BY-SA 4.0',licUrl:'https://creativecommons.org/licenses/by-sa/4.0/'},
+    {y:'1938',k:'tool',l:'First photocopy',t:'The first photocopy',d:'Chester Carlson made the first xerographic copy in Queens, New York. Office copiers reached the market about two decades later.'},
+    {y:'1942–43',k:'zine',l:'The White Rose',t:'The White Rose',d:'Students in Munich typed and duplicated six leaflets against Hitler and the war, and paid for them with their lives.'},
+    {y:'1950s',k:'zine',l:'Fanzines',t:'Fanzines',d:'Fans of science fiction, comics, horror, music and more started making their own magazines.'},
+    {y:'1970s',k:'zine',l:'Punk fanzines',t:'Fanzines of the ’70s',d:'Punk and local music scenes made fanzines of their own.'},
+    {y:'1978',k:'zine',l:'Ditto purple',t:'The High Valley News',d:'A school newspaper from High Valley School in Clinton Corners, New York, run off on a spirit duplicator in its telltale purple ink. Volume 4, number 4 carries hand-lettered headlines next to typewritten columns, softball box scores, and a front-page plea for donations toward a $1,500 computer.',img:'img/high-valley-news.jpg',alt:'Front page of The High Valley News, Vol. 4, No. 4, September 29, 1978, printed in purple ditto ink with hand-lettered headlines, typed columns, softball scores and a contents box.',cap:'The High Valley News, Vol. 4, No. 4, September 29, 1978.',credit:'Photo: [photographer]',lic:'CC BY-SA 4.0',licUrl:'https://creativecommons.org/licenses/by-sa/4.0/'},
+    {y:'1990s',k:'zine',l:'Riot Grrrl',t:'The Riot Grrrl zine revival',d:'Riot Grrrl brought a zine revival in the 1990s.'}
+  ];
+  const tl=document.getElementById('tl'), det=document.getElementById('tlDetail');
+  events.forEach((e,i)=>{const b=document.createElement('button');b.className='ev '+e.k;b.setAttribute('aria-pressed','false');b.innerHTML='<span class="yr"></span><span class="dot"></span><span class="lbl"></span>';b.querySelector('.yr').textContent=e.y;b.querySelector('.lbl').textContent=e.l;b.onclick=()=>showEv(i);tl.appendChild(b);});
+  function showEv(i){
+    [...tl.children].forEach((b,j)=>b.setAttribute('aria-pressed',String(i===j)));
+    const e=events[i];det.className='tl-detail '+e.k+(e.img?' has-img':'');
+    det.innerHTML='<div class="tl-text"><p class="eyebrow"></p><h3></h3><p></p></div>';
+    const tx=det.firstChild;tx.children[0].textContent=e.y;tx.children[1].textContent=e.t;tx.children[2].textContent=e.d;
+    if(e.img){const f=document.createElement('figure');f.className='tl-fig';const im=document.createElement('img');im.src=e.img;im.alt=e.alt||'';const c=document.createElement('figcaption');c.textContent=e.cap||'';
+      if(e.credit||e.lic){const cr=document.createElement('span');cr.className='credit';cr.textContent=(e.credit||'')+(e.credit&&e.lic?' · ':'');if(e.lic){const a=document.createElement('a');a.href=e.licUrl;a.target='_blank';a.rel='noopener';a.textContent=e.lic;cr.appendChild(a);}c.appendChild(cr);}
+      f.append(im,c);det.appendChild(f);}
+  }
+  showEv(0);
+
+  /* split-flap board */
+  const CHARS=' ABCDEFGHIJKLMNOPQRSTUVWXYZ&-/.';
+  // Each entry fills one or more consecutive rows (max 10 letters per row).
+  const WORDS=[
+    ['ZINES'],['PAPER'],['COPIER'],['CUT &','PASTE'],['DREAMS'],['HEARTBREAK'],['PUNK'],['DIY'],['DESIGN'],
+    ['LASER','PRINTER'],['HOLE PUNCH'],['LONGARM','STAPLER'],['FRIENDS'],['LOVERS'],['TIME'],
+    ['PROCRASTI-','NATION'],['SPIRIT','DUPLICATOR'],
+    ['FOLD'],['CUT'],['DRAW'],['TYPE'],['TYPEWRITER'],['TAPE'],['GLUE'],['COLLAGES'],
+    ['ZINE FESTS'],['DECORA-','TIONS'],['SNACKS'],['EXHIBITORS'],['CHAIRS'],['NOISE']
+  ];
+  const FINAL=[{text:'BUILDING'},{text:'COMMUNITY'},{text:''}];
+  const HOLD=1000,STEP=44,ROWS=3;
+  const wait=ms=>new Promise(r=>setTimeout(r,ms));
+  function makeTile(board){
+    const t=document.createElement('div');t.className='ftile';
+    t.innerHTML='<div class="half top s-top"><span></span></div><div class="half bottom s-bottom"><span></span></div><div class="half top flap-top"><span></span></div><div class="half bottom flap-bottom"><span></span></div>';
+    board.appendChild(t);const q=c=>t.querySelector(c+' span');
+    const tile={target:' ',cur:' ',sTop:q('.s-top'),sBot:q('.s-bottom'),fTop:q('.flap-top'),fBot:q('.flap-bottom'),flapTop:t.querySelector('.flap-top'),flapBot:t.querySelector('.flap-bottom')};
+    set(tile,' ');return tile;
+  }
+  function set(tile,ch){tile.cur=ch;tile.sTop.textContent=tile.sBot.textContent=tile.fTop.textContent=tile.fBot.textContent=ch;tile.flapTop.style.transform='rotateX(0deg)';tile.flapBot.style.transform='rotateX(90deg)';}
+  async function flip(tile,next){
+    tile.sTop.textContent=next;tile.fTop.textContent=tile.cur;tile.fBot.textContent=next;
+    const a=tile.flapTop.animate([{transform:'rotateX(0deg)',filter:'brightness(1)'},{transform:'rotateX(-90deg)',filter:'brightness(.6)'}],{duration:STEP,easing:'cubic-bezier(.55,0,1,.45)',fill:'forwards'});
+    await a.finished;
+    const b=tile.flapBot.animate([{transform:'rotateX(90deg)',filter:'brightness(.6)'},{transform:'rotateX(0deg)',filter:'brightness(1)'}],{duration:STEP,easing:'cubic-bezier(0,.55,.45,1)',fill:'forwards'});
+    await b.finished;
+    tile.sBot.textContent=next;tile.fTop.textContent=next;a.cancel();b.cancel();
+    tile.flapTop.style.transform='rotateX(0deg)';tile.flapBot.style.transform='rotateX(90deg)';tile.cur=next;
+  }
+  async function spin(tile){let i=CHARS.indexOf(tile.cur),steps=0;if(i<0)i=0;while(CHARS[i]!==tile.target){i=(i+1)%CHARS.length;await flip(tile,CHARS[i]);if(++steps>CHARS.length*2)break;}}
+  function build(board){board.innerHTML='';const cols=parseInt(getComputedStyle(board).getPropertyValue('--cols'))||10;const all=[];for(let i=0;i<ROWS*cols;i++)all.push(makeTile(board));const rows=[];for(let r=0;r<ROWS;r++)rows.push(all.slice(r*cols,(r+1)*cols));return {cols,rows};}
+  function pad(text,cols,left){const n=[...text].length;if(left===undefined)left=Math.floor((cols-n)/2);return [...(' '.repeat(Math.max(0,left))+text).padEnd(cols,' ')].slice(0,cols);}
+  async function show(rows,texts,per){const jobs=[];rows.forEach((tiles,r)=>{const it=texts[r]||{text:''};const ch=pad(it.text,tiles.length,it.left);tiles.forEach((t,i)=>{t.target=ch[i];jobs.push(wait(i*per+r*120).then(()=>spin(t)));});});await Promise.all(jobs);}
+  const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+  const rand=n=>Math.floor(Math.random()*n);
+  function sequence(cols){
+    const pool=shuffle(WORDS),out=[],rounds=3+rand(2);
+    for(let k=0;k<rounds&&pool.length;k++){
+      const board=[{text:''},{text:''},{text:''}],free=[true,true,true];
+      let placed=0;const want=1+rand(2);
+      for(let p=0;p<pool.length&&placed<want;){
+        const w=pool[p],starts=[];
+        for(let s=0;s+w.length<=ROWS;s++)if(w.every((_,j)=>free[s+j]))starts.push(s);
+        if(!starts.length){p++;continue;}
+        const s=starts[rand(starts.length)],maxLen=Math.max(...w.map(x=>x.length)),left=rand(cols-maxLen+1);
+        w.forEach((txt,j)=>{board[s+j]={text:txt,left};free[s+j]=false;});
+        pool.splice(p,1);placed++;
+      }
+      out.push(board);
+    }
+    out.push(FINAL);return out;
+  }
+  async function play(rows){const boards=sequence(rows[0].length);for(let k=0;k<boards.length;k++){await show(rows,boards[k],60);if(k<boards.length-1)await wait(HOLD+Math.random()*700);}}
+  function settle(rows){FINAL.forEach((w,r)=>pad(w.text,rows[r].length).forEach((ch,i)=>set(rows[r][i],ch)));}
+  const boardEl=document.getElementById('word');let board=build(boardEl),played=false;
+  addEventListener('resize',()=>{const cols=parseInt(getComputedStyle(boardEl).getPropertyValue('--cols'))||10;if(cols===board.cols||!played)return;board=build(boardEl);settle(board.rows);});
+
+  const tagEl=document.getElementById('tag');tagEl.innerHTML='<span class="text">By Throwing a Zine Fest</span>';const tagText=tagEl.firstChild;
+  function hex(v){const m=v.trim().replace('#','');return [0,2,4].map(i=>parseInt(m.slice(i,i+2),16));}
+  function mix(a,b,t){const pa=hex(a),pb=hex(b);return 'rgb('+pa.map((v,i)=>Math.round(v+(pb[i]-v)*t)).join(',')+')';}
+  async function grow(){
+    try{await document.fonts.ready;}catch(e){}
+    const cs=getComputedStyle(tagEl),root=getComputedStyle(document.documentElement);
+    const c0=root.getPropertyValue('--pink'),c1=root.getPropertyValue('--ink');
+    const r=tagText.getBoundingClientRect(),padp=24,W=Math.ceil(r.width+padp*2),H=Math.ceil(r.height+padp*2),dpr=Math.min(devicePixelRatio||1,2);
+    const cv=document.createElement('canvas');cv.width=W*dpr;cv.height=H*dpr;cv.style.width=W+'px';cv.style.height=H+'px';tagEl.appendChild(cv);const ctx=cv.getContext('2d');
+    const full=document.createElement('canvas');full.width=cv.width;full.height=cv.height;const f=full.getContext('2d');f.scale(dpr,dpr);
+    f.font=cs.fontStyle+' '+cs.fontWeight+' '+cs.fontSize+' '+cs.fontFamily;f.textAlign='center';f.textBaseline='middle';
+    const small=document.createElement('canvas'),sm=small.getContext('2d');
+    const blocks=[26,20,15,11,8,6,4,3,2,1];
+    for(let k=0;k<blocks.length;k++){
+      const t=k/(blocks.length-1);f.clearRect(0,0,W,H);f.fillStyle=mix(c0,c1,Math.min(1,t*1.15));f.fillText(tagText.textContent,W/2,H/2);
+      const bs=blocks[k]*dpr;small.width=Math.max(1,Math.ceil(cv.width/bs));small.height=Math.max(1,Math.ceil(cv.height/bs));
+      sm.imageSmoothingEnabled=true;sm.clearRect(0,0,small.width,small.height);sm.drawImage(full,0,0,small.width,small.height);
+      ctx.clearRect(0,0,cv.width,cv.height);ctx.imageSmoothingEnabled=false;ctx.globalAlpha=Math.min(1,.35+t);ctx.drawImage(small,0,0,small.width*bs,small.height*bs);
+      await wait(k<3?380:260);
+    }
+    tagEl.classList.add('done');cv.remove();
+  }
+  if(reduce){settle(board.rows);tagEl.classList.add('still');return;}
+  let busy=true;
+  (async()=>{await wait(500);await play(board.rows);played=true;setTimeout(grow,450);busy=false;})();
+  boardEl.addEventListener('click',async()=>{if(busy)return;busy=true;await play(board.rows);busy=false;});
+})();
+</script>
+
+</body>
+</html>
